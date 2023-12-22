@@ -87,20 +87,20 @@ public class Move : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(mStartGame)
-        {
-			mStartGame = false;
-			mTurn = true;
-			mStopCheck = 5;
-			mStage = 0;
-		}
+		//if(mStartGame)
+  //      {
+		//	mStartGame = false;
+		//	mTurn = true;
+		//	mStopCheck = 5;
+		//	mStage = 0;
+		//}
 
-		if(mReceiveResult)
-        {
-			mReceiveResult = false;
-			if (!mTurn) return;
-			mStage = 1;
-		}
+		//if(mReceiveResult)
+  //      {
+		//	mReceiveResult = false;
+		//	if (!mTurn) return;
+		//	mStage = 1;
+		//}
 
 		Turning ();
 	}
