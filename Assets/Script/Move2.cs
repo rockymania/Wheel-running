@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using static Main;
 public class Move : MonoBehaviour {
 
 	//開始轉
@@ -36,9 +36,31 @@ public class Move : MonoBehaviour {
 	private int mMaxWheel = 7;
 
 	private string UIImage = "image/";
+
+	private void HandleStartEvent()
+	{
+		if (mTurn) return;
+		mStartGame = false;
+		mTurn = true;
+		mStopCheck = 5;
+		mStage = 0;
+	}
+
+	private void HandleStopEvent()
+	{
+		mReceiveResult = false;
+		if (!mTurn) return;
+		mStage = 1;
+	}
+
+
+
 	// Use this for initialization
 	void Start()
 	{
+		Main.Instance.OnStart += HandleStartEvent;
+		Main.Instance.OnStop += HandleStopEvent;
+
 		//mWheel = new GameObject[7];
 
 		SlotPos = new Vector3[]
@@ -92,21 +114,21 @@ public class Move : MonoBehaviour {
 			
 		mShock = false;
 
-		//先呈現過頭
-		this.transform.localPosition = new Vector3(this.transform.localPosition.x,this.transform.localPosition.y+10);
-		yield return new WaitForSeconds (0.2f);
-		//反彈
-		this.transform.localPosition = new Vector3(this.transform.localPosition.x,this.transform.localPosition.y-10);
-		yield return new WaitForSeconds (0.2f);
-		//在過頭輕微
-		this.transform.localPosition = new Vector3(this.transform.localPosition.x,this.transform.localPosition.y+5);
-		yield return new WaitForSeconds (0.2f);
-		//反彈
-		this.transform.localPosition = new Vector3(this.transform.localPosition.x,this.transform.localPosition.y-5);
-		yield return new WaitForSeconds (0.2f);
+		////先呈現過頭
+		//this.transform.localPosition = new Vector3(this.transform.localPosition.x,this.transform.localPosition.y + 5);
+		//yield return new WaitForSeconds (0.2f);
+  //      //反彈
+  //      this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y - 10);
+  //      yield return new WaitForSeconds(0.2f);
+        ////在過頭輕微
+        //this.transform.localPosition = new Vector3(this.transform.localPosition.x,this.transform.localPosition.y+5);
+        //yield return new WaitForSeconds (0.2f);
+        //反彈
+        //this.transform.localPosition = new Vector3(this.transform.localPosition.x,this.transform.localPosition.y-5);
+        //yield return new WaitForSeconds (0.2f);
 
 
-	}
+    }
 
 	public void Turning()
 	{
